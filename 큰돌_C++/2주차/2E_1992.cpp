@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int dy[4] = {0, 0, -1, 1};
-int dx[4] = {1, -1, 0, 0};
-
 int N;
 char a[65][65];
 
@@ -26,7 +23,7 @@ string quard(int y, int x, int size){
             }
         }
     }
-    
+
     ret += temp;
     return ret;
 } 
