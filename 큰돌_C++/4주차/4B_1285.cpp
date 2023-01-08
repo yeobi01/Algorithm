@@ -1,41 +1,42 @@
 #include<bits/stdc++.h>
-#define maxn 200005
-typedef long long ll;
 using namespace std;   
 const int INF = 987654321;
-const int dy[] = {-1, 0, 1, 0};
-const int dx[] = {0, 1, 0, -1}; 
-int n, a[44], ret = INF;
-string s; 
+
+int N, arr[21], ret = INF;
+string s;
+
 void go(int here){
-	if(here == n + 1){
-		int sum = 0; 
-		for(int i = 0; i < n; i++){
-            int bit = 1 << i;
-			int cnt = 0; 
-			for(int j = 1; j <= n; j++) if(a[j] & bit)cnt++;
-			sum += min(cnt, n - cnt); 
+	if(here == N){
+		int sum = 0;
+		for(int i = 0; i < N; i++){
+			int bit = (1 << i);
+			int cnt = 0;
+			for(int j = 0; j < N; j++){
+				if(arr[j] & bit) cnt++;
+			}
+			sum += min(cnt, N - cnt);
 		}
 		ret = min(ret, sum);
 		return;
 	}
 	go(here + 1);
-	a[here] = ~a[here];
+	arr[here] = ~arr[here];
 	go(here + 1);
+	return;
 }
+
 int main(){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL); cout.tie(NULL);
-	cin >> n; 
-	for(int i = 1; i <= n; i++){
-		cin >> s; 
-		int value = 1; 
-		for(int j = 0; j < s.size(); j++){
-			if(s[j] == 'T')a[i] |= value; 
-			value *= 2;
+
+	cin >> N;
+	for(int i = 0; i < N; i++){
+		cin >> s;
+		for(int j = 0; j < N; j++){
+			if(s[j] == 'T') arr[i] |= (1 << j);
 		}
-	}   
-	go(1);
+	}
+	go(0);
 	cout << ret << "\n";
     return 0;
 }
