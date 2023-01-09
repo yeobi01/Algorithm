@@ -17,7 +17,6 @@ int main(){
             arr[i][j] = c - '0';
         }
     }
-
     for(int t = 0; t < (1 << N*M); t++){
         int sum = 0;
         for(int i = 0; i < N; i++){
