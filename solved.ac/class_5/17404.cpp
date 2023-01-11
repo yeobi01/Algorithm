@@ -16,7 +16,7 @@ int main(){
 
     int low = 1, high = 1, sum = arr[1];
     while(low <= high && high <= N){
-        if(sum >= S) ret = min(ret, (high - low + 1));
+        if(sum == S) ret = min(ret, (high - low + 1));
         if(sum < S){
             high++;
             sum += arr[high];
