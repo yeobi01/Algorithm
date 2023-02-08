@@ -1,17 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int INF = 987654321;
+const int dy[4] = {-1, 1, 0, 0};
+const int dx[4] = {0, 0, 1, -1};
 
-struct shark{
-    int r, c, s, d, z;
-    bool live = true;
+struct Shark{
+    int y, x, s, dir, z, death;
 };
 
-int R, C, M;
-int arr[101][101];
-vector<shark> v;
-
-
+Shark a[10001];
+int R, C, M, ret;
+int shark[101][101], temp[101][101];
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -19,16 +18,72 @@ int main(){
     cout.tie(NULL);
 
     cin >> R >> C >> M;
-    for(int i = 0; i < M; i++){
-        int r, c, s, d, z;
-        cin >> r >> c >> s >> d >> z;
-        v.push_back({r, c, s, d, z});
-        arr[r][c] = i;
+    for(int i = 1; i <= M; i++){
+        cin >> a[i].y >> a[i].x >> a[i].s >> a[i].dir >> a[i].z;
+        a[i].y--; a[i].x--; a[i].dir--;
+
+        if(a[i].dir <= 1) a[i].s %= (2 * (R - 1));
+        else a[i].s %= (2 * (C - 1));
+
+        shark[a[i].y][a[i].x] = i;
     }
 
-    for(int i = 1; i <= C; i++){
-        
-    }
+    for(int t = 0; t < C; t++){
+        for(int i = 0; i < R; i++){
+            if(shark[i][t]){
+                a[shark[i][t]].death = 1;
+                ret += a[shark[i][t]].z;
+                shark[i][t] = 0;
+                break;
+            }
+        }
+        memset(temp, 0, sizeof(temp));
+        for(int i = 1; i <= M; i++){
+            if(a[i].death) continue;
 
+            int y = a[i].y;
+            int x = a[i].x;
+            int s = a[i].s;
+            int dir = a[i].dir;
+            int ny, nx;
+
+            while(1){
+                ny = y + s * dy[dir];
+                nx = x + s * dx[dir];
+                if(ny >= 0 && ny < R && nx >= 0 && nx < C) break;
+                if(dir <= 1){
+                    if(ny < 0){
+                        s -= y;
+                        y = 0;
+                    } else {
+                        s -= R - 1 - y;
+                        y = R - 1;
+                    }
+                } else{
+                    if(nx < 0){
+                        s -= x;
+                        x = 0;
+                    } else{
+                        s -= C - 1 - x;
+                        x = C - 1;
+                    }
+                }
+                dir ^= 1;
+            }
+
+            if(temp[ny][nx]){
+                if(a[temp[ny][nx]].z < a[i].z){
+                    a[temp[ny][nx]].death = 1;
+                    temp[ny][nx] = i;
+                } else a[i].death = 1;
+            } else temp[ny][nx] = i;
+
+            a[i].y = ny;
+            a[i].x = nx;
+            a[i].dir = dir;
+        }
+        memcpy(shark, temp, sizeof(temp));
+    }
+    cout << ret << "\n";
     return 0;
 }
