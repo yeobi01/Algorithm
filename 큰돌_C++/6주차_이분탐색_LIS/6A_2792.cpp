@@ -22,7 +22,7 @@ int main(){
     long long low = 1, high = 0, mid;
     for(int i = 0; i < M; i++) cin >> a[i], high = max(high, a[i]);
     while(low <= high){
-        mid = (low, high) / 2;
+        mid = (low + high) / 2;
         if(check(mid)){
             ret = min(ret, mid);
             high = mid - 1;
