@@ -8,6 +8,7 @@ ll X, Y, Z;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    cout.tie(NULL);
 
     cin >> X >> Y;
     Z = (100 * Y) / X;
