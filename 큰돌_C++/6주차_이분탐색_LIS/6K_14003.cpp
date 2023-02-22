@@ -23,7 +23,7 @@ int main(){
         ans[i].second = num; 
     }
 	cout << len << "\n";
-    //for(int i = 0; i < n; i++)printf("%d %d\n", ans[i].first, ans[i].second);
+    
     for(int i = n - 1; i >= 0; i--){
         if(ans[i].first == len - 1){
             stk.push(ans[i].second); len--;
