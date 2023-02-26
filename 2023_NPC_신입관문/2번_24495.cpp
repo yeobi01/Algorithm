@@ -25,11 +25,11 @@ int main(){
                         if(B[i] > max(c2, A[i])) bc = true;
                         if(c3 > max(A[i], B[i])) ca = true;
                     }
-
-                    
+                    if(ab && bc && ca) flag = true;
                 }
             }
         }
+        flag ? cout << "yes\n" : cout << "no\n";
     }
 
     return 0;
