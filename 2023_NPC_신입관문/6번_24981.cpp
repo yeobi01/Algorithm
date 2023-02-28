@@ -19,12 +19,12 @@ int main(){
     sort(l.begin(), l.end());
     sort(g.begin(), g.end());
     for(int i = 0; i < l.size(); i++){
-        int idx = upper_bound(g.begin(), g.end(), l[i]) - g.begin();
+        int idx = lower_bound(g.begin(), g.end(), l[i]) - g.begin();
         int temp = i + (g.size() - idx);
         ret = min(ret, temp);
     }
     for(int i = 0; i < g.size(); i++){
-        int idx = upper_bound(l.begin(), l.end(), g[i]) - l.begin();
+        int idx = lower_bound(l.begin(), l.end(), g[i]) - l.begin();
         int temp = idx + (g.size() - i - 1);
         ret = min(ret, temp);
     }
