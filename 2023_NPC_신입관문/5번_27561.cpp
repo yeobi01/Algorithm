@@ -31,7 +31,7 @@ int main(){
             if(s[i] == 'G' && arr[i] >= H_front) ret++;
         }
     }
-    if(arr[G_front] >= G_back || arr[H_front] >= H_back) ret++;
+    if((arr[G_front] >= G_back || (G_front <= H_front && arr[G_front] >= H_front)) && (arr[H_front] >= H_back || (H_front <= G_front && arr[H_front] >= G_front))) ret++;
 
     cout << ret << "\n";
     return 0;
