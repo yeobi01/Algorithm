@@ -25,13 +25,16 @@ int main(){
                     if(s[i] == s[j]) visited[j] = true;
                 }
             } else if(i + K >= N){
-                for(int j = N - 1; j >= 0; j--){
-                    if(ret[j] == '.'){
-                        ret[j] = s[i]; ans++;
-                        for(int k = i; k <= j; k++){
-                            if(s[i] == s[k]) visited[k] = true;
-                        }
-                        break;
+                ans++;
+                if(ret[i] == '.'){
+                    ret[i] = s[i];
+                    for(int j = i; j <= N; j++){
+                        if(s[i] == s[j]) visited[j] = true;
+                    }
+                } else if(ret[i] != s[i]){
+                    ret[i - 1] = s[i];
+                    for(int j = i - 1; j <= N; j++){
+                        if(s[i] == s[j]) visited[j] = true;
                     }
                 }
             }
