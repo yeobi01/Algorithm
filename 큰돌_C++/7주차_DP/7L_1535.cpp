@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int INF = 987654321;
 
 int N, L[21], J[21], dp[101];
 vector<int> v;
