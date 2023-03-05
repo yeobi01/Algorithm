@@ -6,7 +6,7 @@ int N, dp[16][1 << 16], dist[16][16];
 
 int tsp(int here, int visited){
     if(visited == (1 << N) - 1){
-        return dp[here][0] ? dp[here][0] : INF;
+        return dist[here][0] ? dist[here][0] : INF;
     }
     int &ret = dp[here][visited];
     if(ret != -1) return ret;
@@ -23,7 +23,6 @@ int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-
     cin >> N;
     for(int i = 0; i < N; i++){
         for(int j = 0; j < N; j++){
