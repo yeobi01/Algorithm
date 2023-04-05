@@ -27,8 +27,6 @@ ll go(ll cnt, ll eat){
             } else{
                 ans = max(ans, go(cnt - C_i, eat + C_i));
             }
-        } else {
-            ans = max(ans, eat);
         }
     }
 
