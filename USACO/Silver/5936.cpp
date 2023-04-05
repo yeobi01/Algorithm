@@ -13,13 +13,13 @@ ll go(ll cnt, ll eat){
     }
 
     ll& ans = memo[cnt];
-    if(ans == -INF){
+    if(ans == 0){
         cout << "-1\n";
         exit(0);
     }
     if(ans != -1) return ans;
 
-    ans = -INF;
+    ans = 0;
     for(ll C_i : C){
         if(cnt - C_i >= 0){
             if(FN[cnt - C_i]){
