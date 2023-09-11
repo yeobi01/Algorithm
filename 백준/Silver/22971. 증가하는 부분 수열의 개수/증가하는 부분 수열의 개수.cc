@@ -16,8 +16,7 @@ int main() {
     for(int i = 0; i < N; i++){
         cin >> arr[i];
     }
-    ans[0] = 1;
-    for(int i = 1; i < N; i++){
+    for(int i = 0; i < N; i++){
         for(int j = 0; j < i; j++){
             if(arr[i] > arr[j]){
                 ans[i] += ans[j];
