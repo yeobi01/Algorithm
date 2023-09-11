@@ -15,15 +15,11 @@ int main() {
     for(int i = 1; i <= N; i++) cin >> D[i];
 
     for(int i = 1; i <= K; i++){
-        for(int j = 1; j <= N; j++){
-            temp[D[j]] = S[j];
-        }
+        for(int j = 1; j <= N; j++) temp[D[j]] = S[j];
         for(int j = 1; j <= N; j++) S[j] = temp[j];
     }
     
-    for(int i = 1; i <= N; i++){
-        cout << S[i] << " ";
-    }
+    for(int i = 1; i <= N; i++) cout << S[i] << " ";
     cout << "\n";
 
     return 0;
