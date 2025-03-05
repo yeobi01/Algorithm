@@ -23,7 +23,6 @@ int get_min_index(){
             _min_idx = i;
         }
     }
-    // if(_min_idx != -1) visited[_min_idx] = true;
     return _min_idx;
 }
 
@@ -32,10 +31,12 @@ int main(){
 
     cin >> N >> W;
     cin >> line_length_max;
+    
     for(int i = 0; i < N; i++){
         int x; int y; cin >> x >> y;
         v.push_back({x, y});
     }
+
     for(int i = 0; i < N; i++){
         for(int j = 0; j < N; j++){
             double x = v[i].first - v[j].first;
@@ -55,19 +56,13 @@ int main(){
         connect[b-1][a-1] = 0;
     }
 
-    // for(int i = 0; i < N; i++){
-    //     for(int j = 0; j < N; j++){
-    //         cout << connect[i][j] << " ";
-    //     } cout << "\n";
-    // }
-
     for(int i = 0; i < N; i++) dist[i] = connect[0][i];
     visited[0] = true;
+
     for(int i = 0; i < N - 2; i++){
         int cur = get_min_index();
         visited[cur] = true;
         
-        // if(i == -1) break;
         for(int j = 0; j < N; j++){
             if(visited[j]) continue;
             if(dist[j] > dist[cur] + connect[cur][j]){
@@ -75,9 +70,7 @@ int main(){
             }
         }
     }
-    // for(int i = 0; i < N; i++){
-    //     cout << dist[i] << " ";
-    // }
+    
     int res = dist[N - 1] * 1000;
     cout << res << "\n";
 
